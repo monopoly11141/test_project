@@ -1,22 +1,35 @@
 import 'package:go_router/go_router.dart';
-import 'package:test_project/navigation/screen.dart';
-import 'package:test_project/pages/setting_page.dart';
+import 'package:test_project/core/ScaffoldWithNavBar.dart';
 
-import '../pages/home_page.dart';
+import '../feature_home/home_page.dart';
+import '../feature_setting/setting_page.dart';
+import 'path.dart';
 
 // GoRouter configuration
 final router = GoRouter(
-  initialLocation: HomePageScreen().route,
+  initialLocation: Path.home.route,
   routes: [
-    GoRoute(
-      path: HomePageScreen().route,
-      builder: (context, state) => HomePage(),
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) =>
+          ScaffoldWithNavBar(navigationShell: navigationShell),
+      branches: [
+        StatefulShellBranch(
+          routes: <RouteBase>[
+            GoRoute(
+              path: Path.home.route,
+              builder: (context, state) => HomePage(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: <RouteBase>[
+            GoRoute(
+              path: Path.setting.route,
+              builder: (context, state) => SettingPage(),
+            ),
+          ],
+        ),
+      ],
     ),
-    //
-    GoRoute(
-      path: SettingPageScreen().route,
-      builder: (context, state) => SettingPage()
-    )
-
   ],
 );
