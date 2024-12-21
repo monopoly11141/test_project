@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/pages/first_page.dart';
-import 'package:test_project/pages/home_page.dart';
-import 'package:test_project/pages/second_page.dart';
-import 'package:test_project/pages/setting_page.dart';
+
+import 'navigation/router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,14 +11,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: FirstPage(),
-      routes: {
-        "/home_page" : (context) => HomePage(),
-        "/second_page": (context) => SecondPage(),
-        "/setting_page": (context) => SettingPage(),
-      },
+    // return MaterialApp(
+    //   debugShowCheckedModeBanner: false,
+    //   home: FirstPage(),
+    //   routes: {
+    //     "/home_page" : (context) => HomePage(),
+    //     "/second_page": (context) => SecondPage(),
+    //     "/setting_page": (context) => SettingPage(),
+    //   },
+    // );
+    return MaterialApp.router(
+      routerConfig: router,
     );
   }
 }
